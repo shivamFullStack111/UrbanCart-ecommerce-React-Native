@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import {View, Text} from 'react-native';
 import React, {useState} from 'react';
 // Only import react-native-gesture-handler on native platforms
@@ -16,18 +17,17 @@ const App = () => {
   const [isAuthenticated, setisAuthenticated] = useState(false);
   return (
     <NavigationContainer>
-      {!isAuthenticated && (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="intro" component={IntroPage} />
-          <Stack.Screen name="login" component={Login}></Stack.Screen>
-          <Stack.Screen name="register" component={Register}></Stack.Screen>
-        </Stack.Navigator>
-      )}
-      {isAuthenticated && (
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="intro" component={IntroPage} />
+        <Stack.Screen name="login" component={Login}></Stack.Screen>
+        <Stack.Screen name="register" component={Register}></Stack.Screen>
+        <Stack.Screen name="home" component={Home}></Stack.Screen>
+      </Stack.Navigator>
+      {/* {isAuthenticated && (
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="home" component={Home}></Stack.Screen>
         </Stack.Navigator>
-      )}
+      )} */}
     </NavigationContainer>
   );
 };

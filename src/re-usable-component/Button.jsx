@@ -5,7 +5,7 @@ import {hp} from '../utils';
 
 const Button = ({height = 45, title = 'Submit', marginTop = 0}) => {
   return (
-    <TouchableOpacity
+    <View
       style={{
         width: '100%',
         height,
@@ -16,9 +16,9 @@ const Button = ({height = 45, title = 'Submit', marginTop = 0}) => {
         marginTop,
       }}>
       <Text style={{color: 'white', fontSize: hp(2.2), fontWeight: '700'}}>
-        Button
+        {title}
       </Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 

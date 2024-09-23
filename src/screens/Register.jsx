@@ -1,20 +1,61 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {blue, gray, hp} from '../utils';
 import Button from '../re-usable-component/Button';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-const Login = () => {
-  // const bannerVal =
+const Register = () => {
+  const navigation = useNavigation();
+  const isFocus = useIsFocused();
+
+  let bannerVal = useSharedValue(-220);
+  let smallVal = useSharedValue(-40);
+
+  const smallStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{translateY: smallVal.value}],
+      opacity: smallVal.value === -40 ? 0 : 1,
+    };
+  });
+
+  const bannerStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{translateX: bannerVal.value}],
+    };
+  });
+
+  useEffect(() => {
+    bannerVal.value = withTiming(40, {duration: 1000});
+    smallVal.value = withTiming(0, {duration: 500});
+  }, [isFocus]);
+
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.imageCon}>
-        <Image
-          style={styles.image}
-          source={require('../../images/logingirl.png')}
-        />
+        <Animated.View
+          style={[
+            {
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+            },
+            bannerStyle,
+          ]}>
+          <Image
+            style={{...styles.image, height: 200}}
+            source={require('../../images/registerman.png')}
+          />
+        </Animated.View>
       </View>
 
       <View style={styles.formCon}>
@@ -22,8 +63,17 @@ const Login = () => {
         <Text style={styles.text}>
           Welcome back exclusive offers are waiting
         </Text>
-
-        <View style={styles.fieldCon}>
+        <Animated.View
+          style={[{...styles.fieldCon, marginTop: 10}, smallStyle]}>
+          <Text style={styles.text}>Name </Text>
+          <TextInput
+            placeholder="Enter your name"
+            placeholderTextColor={'gray'}
+            cursorColor={'black'}
+            style={styles.inputField}
+          />
+        </Animated.View>
+        <Animated.View style={[styles.fieldCon, smallStyle]}>
           <Text style={styles.text}>Email Address </Text>
           <TextInput
             placeholder="Enter your email"
@@ -31,8 +81,10 @@ const Login = () => {
             cursorColor={'black'}
             style={styles.inputField}
           />
-        </View>
-        <View style={{...styles.fieldCon, marginTop: 10}}>
+        </Animated.View>
+
+        <Animated.View
+          style={[{...styles.fieldCon, marginTop: 10}, smallStyle]}>
           <Text style={styles.text}>Password </Text>
           <TextInput
             secureTextEntry
@@ -41,7 +93,7 @@ const Login = () => {
             cursorColor={'black'}
             style={styles.inputField}
           />
-        </View>
+        </Animated.View>
 
         <TouchableOpacity>
           <Text
@@ -59,7 +111,7 @@ const Login = () => {
         <View style={styles.toSignupCon}>
           <Text style={styles.toSignup}>Not have an account? </Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('login')}>
             <Text
               style={{
                 ...styles.text,
@@ -76,7 +128,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
   imageCon: {
