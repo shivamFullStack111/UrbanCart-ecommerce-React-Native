@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/self-closing-comp */
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -14,8 +14,10 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import {gray, hp, wp} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const Profile = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       {/* header */}
@@ -41,20 +43,22 @@ const Profile = () => {
         {/* 4 boxes */}
         <View style={styles.boxContainer}>
           <View style={styles.boxRow}>
-            <View style={styles.box}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('orders')}
+              style={styles.box}>
               <Text style={styles.boxText}>Your Order</Text>
-            </View>
-            <View style={styles.box}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.box}>
               <Text style={styles.boxText}>Wishlist</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.boxRow}>
-            <View style={styles.box}>
+            <TouchableOpacity style={styles.box}>
               <Text style={styles.boxText}>Coupons</Text>
-            </View>
-            <View style={styles.box}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.box}>
               <Text style={styles.boxText}>Track Order</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -171,8 +175,9 @@ const styles = StyleSheet.create({
   },
   boxRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     gap: wp(3),
+    justifyContent: 'center',
   },
   box: {
     backgroundColor: gray.light,

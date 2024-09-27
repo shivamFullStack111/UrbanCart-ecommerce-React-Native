@@ -8,6 +8,7 @@ export const gray = {
   gray: '#808080',
   dim: '#2F4F4F',
   most: '#36454F',
+  extraLight: '#F2F2F1',
 };
 
 export const blue = '#74a2fc';

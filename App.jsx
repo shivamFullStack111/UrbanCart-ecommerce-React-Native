@@ -11,6 +11,7 @@ import Login from './src/screens/Login';
 import Register from './src/screens/Register';
 import Tab_index from './src/screens/Tab_index';
 import CheckOut from './src/screens/CheckOut';
+import MyOrders from './src/screens/MyOrders';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="register" component={Register}></Stack.Screen>
         <Stack.Screen name="tab" component={Tab_index}></Stack.Screen>
         <Stack.Screen name="checkout" component={CheckOut}></Stack.Screen>
+        <Stack.Screen name="orders" component={MyOrders}></Stack.Screen>
       </Stack.Navigator>
       {/* {isAuthenticated && (
         <Stack.Navigator screenOptions={{headerShown: false}}>
