@@ -12,15 +12,17 @@ const MyOrders = () => {
   const navigation = useNavigation();
   const [page, setpage] = useState(1);
   const pageRef = useRef();
-  useEffect(() => {
-    if (pageRef.current) {
-      if (page === 1) {
-        pageRef.current.scrollToIndex({index: 0, animated: true});
-      } else {
-        pageRef.current.scrollToIndex({index: 1, animated: true});
-      }
-    }
-  }, [page]);
+
+  // useEffect(() => {
+  //   if (pageRef.current) {
+  //     if (page === 1) {
+  //       pageRef.current.scrollToIndex({index: 0, animated: true});
+  //     } else {
+  //       pageRef.current.scrollToIndex({index: 1, animated: true});
+  //     }
+  //   }
+  // }, [page]);
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View>
@@ -49,10 +51,13 @@ const MyOrders = () => {
             flexDirection: 'row',
           }}>
           <TouchableOpacity
-            onPress={() => setpage(1)}
+            onPress={() => {
+              setpage(1);
+              pageRef.current.scrollToIndex({index: 0, animated: true});
+            }}
             style={{
-              color: page === 1 ? 'white' : 'black',
-              backgroundColor: page !== 2 ? 'black' : gray.extraLight,
+              color: page === 0 ? 'white' : 'black',
+              backgroundColor: page !== 1 ? 'black' : gray.extraLight,
               width: '48%',
               height: 50,
               justifyContent: 'center',
@@ -60,7 +65,7 @@ const MyOrders = () => {
             }}>
             <Text
               style={{
-                color: page === 1 ? 'white' : 'black',
+                color: page === 0 ? 'white' : 'black',
                 fontSize: 16,
                 fontWeight: '600',
               }}>
@@ -68,10 +73,14 @@ const MyOrders = () => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => setpage(2)}
+            onPress={() => {
+              setpage(1);
+
+              pageRef.current.scrollToIndex({index: 1, animated: true});
+            }}
             style={{
-              color: page === 2 ? 'white' : 'black',
-              backgroundColor: page === 2 ? 'black' : gray.extraLight,
+              color: page === 1 ? 'white' : 'black',
+              backgroundColor: page === 1 ? 'black' : gray.extraLight,
               width: '48%',
               height: 50,
               justifyContent: 'center',
@@ -79,7 +88,7 @@ const MyOrders = () => {
             }}>
             <Text
               style={{
-                color: page === 1 ? 'black' : 'white',
+                color: page === 0 ? 'black' : 'white',
                 fontSize: 16,
                 fontWeight: '600',
               }}>
@@ -94,14 +103,38 @@ const MyOrders = () => {
         data={[1, 2]}
         renderItem={() => (
           <View style={{flex: 1, width: wp(100)}}>
-            <Text style={{color: 'black'}}>cgvh dh</Text>
+            {page === 0 ? <Ongoing /> : <Completed />}
           </View>
         )}
         pagingEnabled
         horizontal
+        onScroll={event => {
+          // current page index ko calculate karta hai
+          const offsetX = event.nativeEvent.contentOffset.x;
+          const newIndex = Math.round(offsetX / wp(100));
+          setpage(newIndex);
+        }}
+
+        // initialScrollIndex={e => console.log(e)}
       />
     </View>
   );
 };
 
 export default MyOrders;
+
+const Ongoing = () => {
+  return (
+    <View>
+      <Text style={{color: 'black'}}>MyOrders</Text>
+    </View>
+  );
+};
+
+const Completed = () => {
+  return (
+    <View>
+      <Text style={{color: 'black'}}>MyOrders</Text>
+    </View>
+  );
+};
