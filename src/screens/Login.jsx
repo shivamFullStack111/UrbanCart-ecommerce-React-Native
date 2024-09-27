@@ -96,7 +96,7 @@ const Login = () => {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('home')}>
+        <TouchableOpacity onPress={() => navigation.navigate('tab')}>
           <Button marginTop={15} height={45} title="Sign in" />
         </TouchableOpacity>
 

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import React from 'react';
 import {hp} from '../utils';
 
@@ -15,7 +15,7 @@ const Button = ({height = 45, title = 'Submit', marginTop = 0}) => {
         alignItems: 'center',
         marginTop,
       }}>
-      <Text style={{color: 'white', fontSize: hp(2.2), fontWeight: '700'}}>
+      <Text style={{color: 'white', fontSize: 18, fontWeight: '700'}}>
         {title}
       </Text>
     </View>

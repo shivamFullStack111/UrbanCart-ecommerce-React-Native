@@ -21,7 +21,14 @@ const SearchBar = () => {
         paddingHorizontal: 10,
       }}>
       <FontAwesomeIcon color={gray.gray} size={22} icon={faMagnifyingGlass} />
-      <TextInput style={{flex: 1}}></TextInput>
+      <TextInput
+        style={{
+          flex: 1,
+          color: 'black',
+          fontSize: 16,
+          fontWeight: '500',
+        }}
+      />
       <FontAwesomeIcon color={gray.gray} size={22} icon={faList} />
     </View>
   );
