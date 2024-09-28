@@ -2,7 +2,7 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {Pressable, ScrollView, TextInput} from 'react-native-gesture-handler';
-import {gray} from '../utils';
+import {gray, manImage} from '../utils';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft, faPencil} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
@@ -47,6 +47,7 @@ const EditProfile = () => {
               borderColor: 'gray',
               marginTop: 40,
             }}
+            source={{uri: manImage}}
           />
           <FontAwesomeIcon
             style={{

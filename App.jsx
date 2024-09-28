@@ -16,7 +16,8 @@ import TrackOrder from './src/screens/TrackOrder';
 import WriteReview from './src/screens/WriteReview';
 import EditProfile from './src/screens/EditProfile';
 import Addressess from './src/screens/Addressess';
-import ToralSpend from './src/screens/ToralSpend';
+import AccountDetails from './src/screens/AccountDetails';
+import Coupons from './src/screens/Coupons.jsx';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +36,10 @@ const App = () => {
         <Stack.Screen name="writeReview" component={WriteReview}></Stack.Screen>
         <Stack.Screen name="editProfile" component={EditProfile}></Stack.Screen>
         <Stack.Screen name="addressess" component={Addressess}></Stack.Screen>
-        <Stack.Screen name="totalSpend" component={ToralSpend}></Stack.Screen>
+        <Stack.Screen name="coupons" component={Coupons}></Stack.Screen>
+        <Stack.Screen
+          name="accountDetails"
+          component={AccountDetails}></Stack.Screen>
       </Stack.Navigator>
       {/* {isAuthenticated && (
         <Stack.Navigator screenOptions={{headerShown: false}}>

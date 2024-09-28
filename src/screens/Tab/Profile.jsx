@@ -13,7 +13,7 @@ import {
   faStar,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import {gray, hp, wp} from '../../utils';
+import {gray, hp, manImage, wp} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
 
 const Profile = () => {
@@ -34,7 +34,7 @@ const Profile = () => {
       {/* image with 4 box */}
       <View style={styles.imageContainer}>
         <View style={styles.profileRow}>
-          <Image style={styles.profileImage} source={{uri: 'cdkhhb'}} />
+          <Image style={styles.profileImage} source={{uri: manImage}} />
           <Text style={styles.greetingText}>
             Hello, <Text style={styles.userName}>Shivam</Text>
           </Text>
@@ -48,15 +48,21 @@ const Profile = () => {
               style={styles.box}>
               <Text style={styles.boxText}>Your Order</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.box}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('wishlist')}
+              style={styles.box}>
               <Text style={styles.boxText}>Wishlist</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.boxRow}>
-            <TouchableOpacity style={styles.box}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('coupons')}
+              style={styles.box}>
               <Text style={styles.boxText}>Coupons</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.box}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('orders')}
+              style={styles.box}>
               <Text style={styles.boxText}>Track Order</Text>
             </TouchableOpacity>
           </View>
@@ -80,19 +86,19 @@ const Profile = () => {
           <Text style={styles.arrow}>></Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate('addressess')}
           style={styles.settingRow}>
           <FontAwesomeIcon color="red" size={20} icon={faMapLocationDot} />
           <Text style={styles.settingText}>Saved Addresses</Text>
           <Text style={styles.arrow}>></Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('totalSpend')}
+          onPress={() => navigation.navigate('accountDetails')}
           style={styles.settingRow}>
           <FontAwesomeIcon color="red" size={20} icon={faCommentsDollar} />
-          <Text style={styles.settingText}>Total Spend</Text>
+          <Text style={styles.settingText}>Account Details</Text>
           <Text style={styles.arrow}>></Text>
         </TouchableOpacity>
       </View>
@@ -108,7 +114,7 @@ const Profile = () => {
 
         <View style={styles.activityRow}>
           <FontAwesomeIcon size={20} icon={faStar} color="red" />
-          <Text style={styles.activityText}>Reviews</Text>
+          <Text style={styles.activityText}>Ratings</Text>
           <Text style={styles.arrow}>></Text>
         </View>
       </View>

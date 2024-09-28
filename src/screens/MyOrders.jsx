@@ -32,6 +32,7 @@ const MyOrders = () => {
             My Order
           </Text>
         </View>
+
         <View
           style={{
             width: '95%',
