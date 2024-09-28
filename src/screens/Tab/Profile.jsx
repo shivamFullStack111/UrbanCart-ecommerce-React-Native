@@ -66,42 +66,48 @@ const Profile = () => {
       <View style={styles.settingsContainer}>
         <Text style={styles.sectionTitle}>Account Settings</Text>
 
-        <View style={styles.settingRow}>
-          <FontAwesomeIcon size={wp(5)} icon={faUser} color="red" />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('editProfile')}
+          style={styles.settingRow}>
+          <FontAwesomeIcon size={20} icon={faUser} color="red" />
           <Text style={styles.settingText}>Edit Profile</Text>
           <Text style={styles.arrow}>></Text>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.settingRow}>
-          <FontAwesomeIcon color="red" size={wp(5)} icon={faCreditCard} />
+        <TouchableOpacity style={styles.settingRow}>
+          <FontAwesomeIcon color="red" size={20} icon={faCreditCard} />
           <Text style={styles.settingText}>Saved Cards & Wallet</Text>
           <Text style={styles.arrow}>></Text>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.settingRow}>
-          <FontAwesomeIcon color="red" size={wp(5)} icon={faMapLocationDot} />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('addressess')}
+          style={styles.settingRow}>
+          <FontAwesomeIcon color="red" size={20} icon={faMapLocationDot} />
           <Text style={styles.settingText}>Saved Addresses</Text>
           <Text style={styles.arrow}>></Text>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.settingRow}>
-          <FontAwesomeIcon color="red" size={wp(5)} icon={faCommentsDollar} />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('totalSpend')}
+          style={styles.settingRow}>
+          <FontAwesomeIcon color="red" size={20} icon={faCommentsDollar} />
           <Text style={styles.settingText}>Total Spend</Text>
           <Text style={styles.arrow}>></Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.activityContainer}>
         <Text style={styles.sectionTitle}>My Activity</Text>
 
         <View style={styles.activityRow}>
-          <FontAwesomeIcon size={wp(5)} color="red" icon={faMessage} />
+          <FontAwesomeIcon size={20} color="red" icon={faMessage} />
           <Text style={styles.activityText}>Reviews</Text>
           <Text style={styles.arrow}>></Text>
         </View>
 
         <View style={styles.activityRow}>
-          <FontAwesomeIcon size={wp(5)} icon={faStar} color="red" />
+          <FontAwesomeIcon size={20} icon={faStar} color="red" />
           <Text style={styles.activityText}>Reviews</Text>
           <Text style={styles.arrow}>></Text>
         </View>
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   headerTitle: {
-    fontSize: wp(6),
+    fontSize: 24,
     color: 'black',
     fontWeight: '800',
   },
@@ -155,15 +161,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileImage: {
-    width: wp(18),
-    height: wp(18),
+    width: 80,
+    height: 80,
     borderRadius: 200,
     borderWidth: 1,
     backgroundColor: 'black',
   },
   greetingText: {
     color: 'black',
-    fontSize: wp(5.5),
+    fontSize: 20,
     fontWeight: '500',
   },
   userName: {
@@ -176,28 +182,28 @@ const styles = StyleSheet.create({
   boxRow: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
-    gap: wp(3),
+    gap: 12,
     justifyContent: 'center',
   },
   box: {
-    backgroundColor: gray.light,
+    backgroundColor: gray.extraLight,
     color: 'black',
-    width: wp(46),
-    height: wp(14),
+    width: 160,
+    height: 52,
     justifyContent: 'center',
     alignItems: 'center',
   },
   boxText: {
     color: 'black',
-    fontSize: wp(4),
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: '500',
   },
   settingsContainer: {
     padding: 10,
   },
   sectionTitle: {
-    fontSize: wp(5),
-    color: 'black',
+    fontSize: 20,
+    color: gray.gray,
     fontWeight: '800',
   },
   settingRow: {
@@ -208,8 +214,8 @@ const styles = StyleSheet.create({
   },
   settingText: {
     color: gray.gray,
-    fontSize: wp(4.5),
-    fontWeight: '500',
+    fontSize: 18,
+    fontWeight: '400',
   },
   arrow: {
     marginLeft: 'auto',
@@ -226,8 +232,8 @@ const styles = StyleSheet.create({
   },
   activityText: {
     color: gray.gray,
-    fontSize: wp(4.5),
-    fontWeight: '500',
+    fontSize: 20,
+    fontWeight: '400',
   },
 });
 
