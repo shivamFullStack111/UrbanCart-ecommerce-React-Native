@@ -20,6 +20,7 @@ import AccountDetails from './src/screens/AccountDetails';
 import Coupons from './src/screens/Coupons.jsx';
 import Notifications from './src/screens/Notifications.jsx';
 import Orientation from 'react-native-orientation-locker';
+import Products from './src/screens/Products.jsx';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const App = () => {
         <Stack.Screen name="editProfile" component={EditProfile}></Stack.Screen>
         <Stack.Screen name="addressess" component={Addressess}></Stack.Screen>
         <Stack.Screen name="coupons" component={Coupons}></Stack.Screen>
+        <Stack.Screen name="products" component={Products}></Stack.Screen>
         <Stack.Screen
           name="notifications"
           component={Notifications}></Stack.Screen>
