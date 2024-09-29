@@ -99,19 +99,19 @@ const styles = StyleSheet.create({
   },
   cardsContainer: {
     marginTop: 20,
-    paddingHorizontal: wp(3),
+    paddingHorizontal: 10,
     flexDirection: 'row',
     gap: wp(3),
     paddingBottom: 10,
     flexWrap: 'wrap',
   },
   cardContainer: {
-    width: wp(45),
+    width: 180,
     marginBottom: 5,
   },
   cardImage: {
-    width: wp(45),
-    height: wp(55),
+    width: 180,
+    height: 230,
     justifyContent: 'space-between',
   },
   cardCloseButton: {

@@ -1,6 +1,6 @@
 /* eslint-disable react/self-closing-comp */
 import {View, Text} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // Only import react-native-gesture-handler on native platforms
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -19,6 +19,7 @@ import Addressess from './src/screens/Addressess';
 import AccountDetails from './src/screens/AccountDetails';
 import Coupons from './src/screens/Coupons.jsx';
 import Notifications from './src/screens/Notifications.jsx';
+import Orientation from 'react-native-orientation-locker';
 
 const Stack = createStackNavigator();
 
@@ -55,5 +56,11 @@ const App = () => {
 };
 
 export default () => {
+  useEffect(() => {
+    Orientation.lockToPortrait(); // Lock to portrait
+    return () => {
+      Orientation.unlockAllOrientations(); // Unlock when unmounted
+    };
+  }, []);
   return <App />;
 };

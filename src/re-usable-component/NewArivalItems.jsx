@@ -12,23 +12,14 @@ const NewArivalItems = () => {
     <View
       style={{
         marginTop: 20,
-        paddingHorizontal: wp(3),
         flexDirection: 'row',
-        gap: wp(3),
-        paddingBottom: 10,
+        gap: 10 + wp(0.3),
+        paddingBottom: 10 + wp(0.3),
         flexWrap: 'wrap',
       }}>
-      <FlatList
-        keyExtractor={item => item}
-        data={data}
-        renderItem={ItemCard}
-        numColumns={2}
-        initialNumToRender={6}
-        maxToRenderPerBatch={4}
-        windowSize={2}
-        removeClippedSubviews={true}
-        columnWrapperStyle={{marginBottom: 10}}
-      />
+      {data?.map((item, i) => (
+        <ItemCard key={i} />
+      ))}
     </View>
   );
 };

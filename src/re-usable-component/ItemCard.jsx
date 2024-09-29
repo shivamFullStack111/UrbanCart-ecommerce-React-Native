@@ -9,13 +9,13 @@ const ItemCard = () => {
   return (
     <View
       style={{
-        width: wp(45),
-        marginBottom: 5,
+        width: 180,
+        marginBottom: 10,
       }}>
       <ImageBackground
         style={{
-          width: wp(45),
-          height: wp(55),
+          width: 180,
+          height: 250,
           justifyContent: 'space-between',
         }}
         source={{
