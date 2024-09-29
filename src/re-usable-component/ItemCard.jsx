@@ -4,10 +4,13 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import {gray, hp, wp} from '../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemCard = () => {
+  const navigation = useNavigation();
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => navigation.navigate('productDetail')}
       style={{
         width: 180,
         marginBottom: 10,
@@ -78,7 +81,7 @@ const ItemCard = () => {
         </Text>
         <Text style={{color: gray.gray}}>(2k review)</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

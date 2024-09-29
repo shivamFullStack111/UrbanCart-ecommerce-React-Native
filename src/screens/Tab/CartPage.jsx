@@ -76,8 +76,11 @@ const CardPage = () => {
 };
 
 const Card = () => {
+  const navigation = useNavigation();
   return (
-    <View style={cardStyles.cardContainer}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('productDetail')}
+      style={cardStyles.cardContainer}>
       <ImageBackground
         source={{
           uri: 'https://images.unsplash.com/photo-1588175996685-a40693ee1087?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2xvdGhpbmclMjBicmFuZCUyMHdvbWVufGVufDB8fDB8fHww',
@@ -119,7 +122,7 @@ const Card = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

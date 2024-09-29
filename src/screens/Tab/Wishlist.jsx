@@ -14,6 +14,7 @@ import {
   faX,
 } from '@fortawesome/free-solid-svg-icons';
 import {gray, hp, wp} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const Wishlist = () => {
   return (
@@ -42,8 +43,11 @@ const Wishlist = () => {
 export default Wishlist;
 
 const Card = () => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('productDetail')}
+      style={styles.cardContainer}>
       <ImageBackground
         style={styles.cardImage}
         source={{
@@ -66,7 +70,7 @@ const Card = () => {
         </Text>
         <Text style={styles.reviewCount}>(2k review)</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

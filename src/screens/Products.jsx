@@ -74,21 +74,24 @@ const Products = () => {
         contentContainerStyle={stylesProducts.productsContainer}
         showsVerticalScrollIndicator={false}>
         {Array.from({length: 19}, (_, i) => (
-          <ImageBackground
-            source={require('../../images/sampleImage.png')}
+          <TouchableOpacity
             key={i}
-            style={stylesProducts.productImage}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              size={24}
-              style={stylesProducts.heartIcon}
-              color={i % 2 === 0 ? gray.gray : 'red'}
-            />
+            onPress={() => navigation.navigate('productDetail')}>
+            <ImageBackground
+              source={require('../../images/sampleImage.png')}
+              style={stylesProducts.productImage}>
+              <FontAwesomeIcon
+                icon={faHeart}
+                size={24}
+                style={stylesProducts.heartIcon}
+                color={i % 2 === 0 ? gray.gray : 'red'}
+              />
 
-            <View style={stylesProducts.addToCartButton}>
-              <Text style={stylesProducts.addToCartText}>Add To Cart</Text>
-            </View>
-          </ImageBackground>
+              <View style={stylesProducts.addToCartButton}>
+                <Text style={stylesProducts.addToCartText}>Add To Cart</Text>
+              </View>
+            </ImageBackground>
+          </TouchableOpacity>
         ))}
       </ScrollView>
 
@@ -189,9 +192,6 @@ const stylesProducts = StyleSheet.create({
 const Footer = () => {
   const [openBox, setOpenBox] = useState('');
   const [activeButton, setActiveButton] = useState('');
-  const genderValue = useSharedValue(0);
-  const sortValue = useSharedValue(0);
-  const filterValue = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => {
     let height = 0;
