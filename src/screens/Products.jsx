@@ -11,7 +11,7 @@ import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons/faAngleLeft';
 import {useNavigation} from '@react-navigation/native';
-import {gray} from '../utils';
+import {gray, hp} from '../utils';
 import {
   faCartShopping,
   faFilter,
@@ -20,7 +20,7 @@ import {
   faUpDown,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {Pressable, ScrollView, TextInput} from 'react-native-gesture-handler';
 import {faLine} from '@fortawesome/free-brands-svg-icons';
 import Animated, {
   useAnimatedStyle,
@@ -64,7 +64,9 @@ const Products = () => {
           />
         </View>
 
-        <FontAwesomeIcon icon={faCartShopping} size={26} />
+        <TouchableOpacity onPress={() => navigation.navigate('cart')}>
+          <FontAwesomeIcon icon={faCartShopping} size={26} />
+        </TouchableOpacity>
       </View>
 
       <ScrollView horizontal style={{height: 70}}>
@@ -164,7 +166,75 @@ const Footer = () => {
   return (
     <>
       {console.log(genderValue.value)}
+      <Animated.View
+        style={[
+          genderStyle,
+          {
+            width: '100%',
+            backgroundColor: 'white',
+            height: 0,
+            position: 'absolute',
+            bottom: 60,
+            // left: 0,
+            right: 0,
+            overflow: 'hidden',
+            zIndex: 30,
+          },
+        ]}>
+        <Text style={{fontSize: 24, color: 'black', margin: 10}}>
+          {openBox.slice(0, 1).toUpperCase() + openBox.slice(1, openBox.length)}
+        </Text>
+        {/* gender button  */}
+        {openBox !== 'filter' && (
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 15,
+              padding: 10,
+            }}>
+            <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 100,
+                height: 45,
+                backgroundColor: 'black',
+              }}>
+              <Text style={{color: 'white', fontSize: 17}}>Men</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 100,
+                height: 45,
+                backgroundColor: gray.extraLight,
+              }}>
+              <Text style={{color: 'black', fontSize: 17}}>Women</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
+        {/* filter items  */}
+        {openBox === 'filter' && <FilterItems />}
+      </Animated.View>
+      {openBox && (
+        <Pressable
+          onPress={() => {
+            setopenBox('');
+            genderValue.value = 0;
+          }}
+          style={{
+            width: '100%',
+            backgroundColor: '#0004',
+            height: hp(100),
+            position: 'absolute',
+            bottom: 0,
+            // left: 0,
+            right: 0,
+            overflow: 'hidden',
+          }}></Pressable>
+      )}
       <View
         style={{
           position: 'relative',
@@ -178,58 +248,6 @@ const Footer = () => {
           alignItems: 'center',
         }}>
         {/* absolute box of gender */}
-        <Animated.View
-          style={[
-            genderStyle,
-            {
-              width: '100%',
-              backgroundColor: 'white',
-              height: 0,
-              position: 'absolute',
-              bottom: 60,
-              // left: 0,
-              right: 0,
-              overflow: 'hidden',
-            },
-          ]}>
-          <Text style={{fontSize: 24, color: 'black', margin: 10}}>
-            {openBox.slice(0, 1).toUpperCase() +
-              openBox.slice(1, openBox.length)}
-          </Text>
-          {/* gender button  */}
-          {openBox !== 'filter' && (
-            <View
-              style={{
-                flexDirection: 'row',
-                gap: 15,
-                padding: 10,
-              }}>
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 45,
-                  backgroundColor: 'black',
-                }}>
-                <Text style={{color: 'white', fontSize: 17}}>Men</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 45,
-                  backgroundColor: gray.extraLight,
-                }}>
-                <Text style={{color: 'black', fontSize: 17}}>Women</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {/* filter items  */}
-          {openBox === 'filter' && <FilterItems />}
-        </Animated.View>
 
         <TouchableOpacity
           onPress={() => {
@@ -238,6 +256,7 @@ const Footer = () => {
               genderValue.value = 130;
             } else {
               genderValue.value = 0;
+              setopenBox('');
             }
           }}
           style={{
@@ -264,6 +283,7 @@ const Footer = () => {
               genderValue.value = 130;
             } else {
               genderValue.value = 0;
+              setopenBox('');
             }
           }}>
           <FontAwesomeIcon color="gray" size={22} icon={faUpDown} />
@@ -277,6 +297,7 @@ const Footer = () => {
               genderValue.value = 500;
             } else {
               genderValue.value = 0;
+              setopenBox('');
             }
           }}
           style={{
@@ -294,6 +315,7 @@ const Footer = () => {
 };
 
 const FilterItems = () => {
+  const [range, setRange] = useState([0, 10000]); // Initial values for the range
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1, padding: 10}}>
       <Text style={{color: 'black', fontSize: 18, fontWeight: '500'}}>
@@ -513,7 +535,19 @@ const FilterItems = () => {
         Price
       </Text>
 
-      <Slider value={300} />
+      <Text style={{color: 'black'}}>
+        Selected range: {range[0]} - {range[1]}
+      </Text>
+      <Slider
+        value={range}
+        onValueChange={value => setRange(value)}
+        minimumValue={0}
+        maximumValue={10000}
+        step={1} // Optional, if you want discrete steps
+        minimumTrackTintColor="#1fb28a" // Customize slider colors if needed
+        maximumTrackTintColor="#d3d3d3"
+        thumbTintColor="#1fb28a"
+      />
     </ScrollView>
   );
 };
