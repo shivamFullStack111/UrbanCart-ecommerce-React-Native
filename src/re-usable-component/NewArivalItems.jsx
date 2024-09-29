@@ -27,7 +27,7 @@ const NewArivalItems = () => {
         maxToRenderPerBatch={4}
         windowSize={2}
         removeClippedSubviews={true}
-        columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}
+        columnWrapperStyle={{marginBottom: 10}}
       />
     </View>
   );

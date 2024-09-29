@@ -11,7 +11,15 @@ const Tab = createBottomTabNavigator();
 
 const Tab_index = () => {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          position: 'absolute', // Makes tab bar absolute
+          backgroundColor: 'white', // Set the background color
+          zIndex: 10, // Z-index to ensure it's beneath your view
+        },
+      }}>
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="wishlist" component={Wishlist} />
       <Tab.Screen name="cart" component={CartPage} />

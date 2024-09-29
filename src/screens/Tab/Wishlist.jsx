@@ -73,6 +73,8 @@ const Card = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
+    paddingBottom: 60,
   },
   header: {
     flexDirection: 'row',
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     backgroundColor: 'white',
-    elevation: 5,
+    elevation: 3,
   },
   headerTitle: {
     color: 'black',

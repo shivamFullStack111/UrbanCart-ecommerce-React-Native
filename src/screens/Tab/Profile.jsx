@@ -8,12 +8,11 @@ import {
   faBell,
   faCommentsDollar,
   faCreditCard,
-  faMapLocationDot,
   faMessage,
   faStar,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import {gray, hp, manImage, wp} from '../../utils';
+import {gray, manImage} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
 
 const Profile = () => {
@@ -25,10 +24,12 @@ const Profile = () => {
         <View>
           <Text style={styles.headerTitle}>Urban Cart</Text>
         </View>
-        <View style={styles.notificationContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('notifications')}
+          style={styles.notificationContainer}>
           <FontAwesomeIcon size={26} icon={faBell} />
           <Text style={styles.notificationBadge}>1</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       {/* image with 4 box */}
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     backgroundColor: 'white',
+    paddingBottom: 60,
   },
   header: {
     width: '100%',
